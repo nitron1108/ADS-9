@@ -1,9 +1,9 @@
 // Copyright 2022 NNTU-CS
-#include "tree.h"
 #include <algorithm>
 #include <memory>
 #include <utility>
 #include <vector>
+#include "tree.h"
 
 int PMTree::factorial(int n) const {
   return (n <= 1) ? 1 : n * factorial(n - 1);
