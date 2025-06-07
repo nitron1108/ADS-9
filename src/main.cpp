@@ -4,36 +4,27 @@
 #include "tree.h"
 
 int main() {
-    std::vector<char> symbols = {'1', '2', '3', '4'};
+  std::vector<char> symbols = {'1', '2', '3', '4'};
+  PMTree tree(symbols);
 
-    try {
-        PMTree tree(symbols);
+  auto allPerms = tree.getAllPerms();
+  std::cout << "All permutations (" << allPerms.size() << "):\n";
+  for (size_t i = 0; i < allPerms.size(); ++i) {
+    std::cout << (i+1) << ": ";
+    for (char c : allPerms[i]) std::cout << c;
+    std::cout << "\n";
+  }
 
-        auto allPerms = tree.getAllPerms();
-        std::cout << "All permutations (" << allPerms.size() << "):\n";
-        for (size_t i = 0; i < allPerms.size(); ++i) {
-            std::cout << (i+1) << ": ";
-            for (char c : allPerms[i]) {
-                std::cout << c;
-            }
-            std::cout << "\n";
-        }
+  const int testIndex = 5;
+  auto perm1 = tree.getPerm1(testIndex);
+  auto perm2 = tree.getPerm2(testIndex);
 
-        const int testIndex = 5;
-        auto permSlow = tree.getPerm1(testIndex);
-        auto permFast = tree.getPerm2(testIndex);
+  std::cout << "\nPermutation #" << testIndex << ":\n";
+  std::cout << "Method 1: ";
+  for (char c : perm1) std::cout << c;
+  std::cout << "\nMethod 2: ";
+  for (char c : perm2) std::cout << c;
+  std::cout << "\n";
 
-        std::cout << "\nPermutation #" << testIndex << ":\n";
-        std::cout << "Slow method: ";
-        for (char c : permSlow) std::cout << c;
-        std::cout << "\nFast method: ";
-        for (char c : permFast) std::cout << c;
-        std::cout << "\n";
-
-    } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << "\n";
-        return 1;
-    }
-
-    return 0;
+  return 0;
 }
