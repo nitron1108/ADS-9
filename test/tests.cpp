@@ -1,7 +1,7 @@
 // Copyright 2022 NNTU-CS
-#include "tree.h"
-#include <vector>
-#include <gtest/gtest.h>
+#include "tree.h" 
+#include <gtest/gtest.h>  
+#include <vector>  
 
 TEST(PMTreeTest, GetPerm1Basic) {
   PMTree tree({'1', '2', '3'});
