@@ -31,7 +31,7 @@ void PMTree::build(Node* node, std::vector<char> symbols) {
 std::vector<std::vector<char>> PMTree::getAllPerms() const {
   std::vector<std::vector<char>> result;
   if (!root) return result;
-  
+
   std::vector<char> current;
   for (const auto& child : root->children) {
     collectPermutations(child.get(), current, result);
@@ -43,7 +43,7 @@ void PMTree::collectPermutations(const Node* node,
                                std::vector<char>& current,
                                std::vector<std::vector<char>>& result) const {
   current.push_back(node->val);
-  
+
   if (node->children.empty()) {
     result.push_back(current);
   } else {
@@ -51,7 +51,7 @@ void PMTree::collectPermutations(const Node* node,
       collectPermutations(child.get(), current, result);
     }
   }
-  
+
   current.pop_back();
 }
 
@@ -65,28 +65,28 @@ std::vector<char> PMTree::getPerm1(int index) const {
 
 std::vector<char> PMTree::getPerm2(int index) const {
   if (!root || index <= 0) return {};
-  
+
   std::vector<char> elements;
   for (const auto& child : root->children) {
     elements.push_back(child->val);
   }
-  
+
   const int n = elements.size();
   const int total = factorial(n);
   if (index > total) return {};
-  
+
   std::vector<char> result;
   int remaining = index - 1;
   std::vector<char> available = elements;
-  
+
   for (int i = n; i >= 1; --i) {
     const int fact = factorial(i - 1);
     const int pos = remaining / fact;
     remaining %= fact;
-    
+
     result.push_back(available[pos]);
     available.erase(available.begin() + pos);
   }
-  
+
   return result;
 }
