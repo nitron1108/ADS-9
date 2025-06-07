@@ -6,8 +6,7 @@
 #include <vector>
 
 int PMTree::factorial(int n) const {
-  if (n <= 1) return 1;
-  return n * factorial(n - 1);
+  return (n <= 1) ? 1 : n * factorial(n - 1);
 }
 
 PMTree::PMTree(const std::vector<char>& symbols) {
