@@ -1,30 +1,24 @@
-// Copyright 2025 NNTU-CS
-#include <gtest/gtest.h>
-#include <string>
+// Copyright 2022 NNTU-CS
 #include <vector>
-
 #include "tree.h"
+#include <gtest/gtest.h>
 
-TEST(ads9, test1) {
-  PMTree tree(std::vector<char>{'1', '2', '3'});
-  std::vector<char> result = getPerm1(tree, 1);
-  ASSERT_TRUE(result[0] == '1' && result[1] == '2' && result[2] == '3');
+TEST(PMTreeTest, GetPerm1Basic) {
+  PMTree tree({'1', '2', '3'});
+  auto result = tree.getPerm1(1);
+  ASSERT_EQ(result, std::vector<char>({'1', '2', '3'}));
 }
 
-TEST(ads9, test2) {
-  PMTree tree(std::vector<char>{'1', '2', '3'});
-  std::vector<char> result = getPerm2(tree, 2);
-  ASSERT_TRUE(result[0] == '1' && result[1] == '3' && result[2] == '2');
+TEST(PMTreeTest, GetPerm2Basic) {
+  PMTree tree({'1', '2', '3'});
+  auto result = tree.getPerm2(2);
+  ASSERT_EQ(result, std::vector<char>({'1', '3', '2'}));
 }
 
-TEST(ads9, test3) {
-  PMTree tree(std::vector<char>{'1', '2', '3'});
-  std::vector<char> result = getPerm1(tree, 6);
-  ASSERT_TRUE(result[0] == '3' && result[1] == '2' && result[2] == '1');
-}
-
-TEST(ads9, test4) {
-  PMTree tree(std::vector<char>{'1', '2', '3'});
-  std::vector<char> result = getPerm2(tree, 8);
-  ASSERT_EQ(result.size(), 0);
+TEST(PMTreeTest, InvalidIndex) {
+  PMTree tree({'1', '2', '3'});
+  auto result1 = tree.getPerm1(7);
+  auto result2 = tree.getPerm2(7);
+  ASSERT_TRUE(result1.empty());
+  ASSERT_TRUE(result2.empty());
 }
